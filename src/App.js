@@ -3,6 +3,7 @@ import "./App.css";
 
 function App() {
   const [res, setRes] = useState(0);
+  const [str, setStr] = useState("");
   // const add = async () => {
   //   try {
   //     const math = await import("./math");
@@ -13,6 +14,16 @@ function App() {
   //     console.log("Unable to import math module");
   //   }
   // };
+
+  const joinString = async () => {
+    try {
+      const { default: _ } = await import("lodash");
+      const str = _.join(["Hello", "World"], " ");
+      setStr(str);
+    } catch (error) {
+      console.log("ERROR ", error);
+    }
+  };
 
   const add = () => {
     import("./math")
@@ -30,6 +41,8 @@ function App() {
     <div className="App">
       <button onClick={() => add()}>Add Two Numbers</button>
       <h2>{res}</h2>
+      <button onClick={() => joinString()}>Join String</button>
+      <h2>{str}</h2>
     </div>
   );
 }
