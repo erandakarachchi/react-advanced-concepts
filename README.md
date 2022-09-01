@@ -2,6 +2,8 @@
 
 [App.js](https://github.com/erandakarachchi/react-advanced-concepts/blob/dynamic-imports-and-code-splitting/src/App.js) contains a example usage of dynamic module import.
 
+### Importing a file
+
 ```javascript
   const add = async () => {
     try {
@@ -11,6 +13,20 @@
       console.log("Unable to import math module");
     }
   };
+```
+
+### Importing a third party module
+
+```javascript
+  const joinString = async () => {
+    try {
+      const { default: _ } = await import("lodash");
+      const str = _.join(["Hello", "World"], " ");
+    } catch (error) {
+      console.log("ERROR ", error);
+    }
+  };
+
 ```
 
 ## Resources
